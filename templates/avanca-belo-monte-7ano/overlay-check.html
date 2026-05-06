@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overlay Check - Gabarito 7o Ano</title>
+  <style>
+    body { margin: 0; background: #222; color: #fff; font-family: Arial, sans-serif; }
+    .toolbar { position: sticky; top: 0; background: #111; padding: 10px 14px; z-index: 10; display: flex; gap: 16px; align-items: center; }
+    .stage { position: relative; width: 1131px; height: 1600px; margin: 18px auto; background: #ddd; }
+    .layer { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .ref { object-fit: cover; }
+    .html { opacity: 0.5; background: transparent; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <label>Opacidade HTML:
+      <input id="alpha" type="range" min="0" max="100" value="50">
+    </label>
+    <span id="v">50%</span>
+  </div>
+  <div class="stage">
+    <img class="layer ref" src="../../scans/WhatsApp Image 2026-05-05 at 16.21.08 (2).jpeg" alt="Referencia">
+    <iframe class="layer html" id="htmlLayer" src="./gabarito.html" title="Template HTML"></iframe>
+  </div>
+  <script>
+    const alpha = document.getElementById("alpha");
+    const htmlLayer = document.getElementById("htmlLayer");
+    const value = document.getElementById("v");
+    alpha.addEventListener("input", () => {
+      const op = Number(alpha.value) / 100;
+      htmlLayer.style.opacity = op.toFixed(2);
+      value.textContent = `${alpha.value}%`;
+    });
+  </script>
+</body>
+</html>
